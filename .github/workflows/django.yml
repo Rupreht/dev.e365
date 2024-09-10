@@ -10,10 +10,13 @@ jobs:
   test:
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    env:
+      DJANGO_ALLOWED_HOSTS: 127.0.0.1
+      SECRET_KEY: J66pKu8BWjUDJFSasW
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.9, 3.10, 3.11, 3.12]
+        python-version: ['3.9', '3.10', '3.11', '3.12']
 
     steps:
     - uses: actions/checkout@v4
