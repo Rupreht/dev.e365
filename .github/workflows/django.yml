@@ -60,9 +60,8 @@ jobs:
         pip install black>=24.4.2 pylint>=3.2.4 pylint-django>=2.5.5
     - name: Run linters
       run: |
-        black --check --exclude "migrations/*" e365/
-        black --check --exclude "migrations/*" shop/
-        pylint -v e365/ shop/
+        black --check --exclude "migrations/*" e365/ shop/
+        pylint e365/ shop/
   # lint_js:
   #   runs-on: ubuntu-latest
   #   steps:
