@@ -62,8 +62,8 @@ jobs:
       run: |
         black --check --exclude "migrations/*" e365/
         black --check --exclude "migrations/*" shop/
-        pylint setup.py e365/
-        pylint setup.py shop/
+        pylint --load-plugins pylint_django e365/
+        pylint --load-plugins pylint_django shop/
   # lint_js:
   #   runs-on: ubuntu-latest
   #   steps:
