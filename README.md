@@ -12,3 +12,12 @@
 | DBNAME | db.sqlite3 | нет | |
 | DBUSER | user | нет | |
 | DBPASS | password | нет | |
+
+## Install
+
+```sh
+pip install pycountry
+
+python manage.py migrate
+python manage.py oscar_populate_countries
+```

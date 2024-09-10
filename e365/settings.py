@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import environ
-# import oscar
+import oscar
 
 env = environ.Env()
 
@@ -178,7 +178,6 @@ TEMPLATES = [
         "DIRS": [
             location('templates'),
         ],
-        "APP_DIRS": True,
         "OPTIONS": {
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
