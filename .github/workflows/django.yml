@@ -60,10 +60,10 @@ jobs:
         pip install -r requirements.txt
     - name: Run linters
       run: |
-        	black --check --exclude "migrations/*" e365/
-          black --check --exclude "migrations/*" shop/
-          pylint setup.py e365/
-          pylint setup.py shop/
+        black --check --exclude "migrations/*" e365/
+        black --check --exclude "migrations/*" shop/
+        pylint setup.py e365/
+        pylint setup.py shop/
   lint_js:
     runs-on: ubuntu-latest
     steps:
