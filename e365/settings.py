@@ -27,8 +27,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG", "false")
 
 ALLOWED_HOSTS = []
-ALLOWED_HOSTS += os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-
+for allowed_hosts in os.environ.get("DJANGO_ALLOWED_HOSTS"):
+    if allowed_hosts is not None:
+        ALLOWED_HOSTS.append(allowed_hosts.split(" "))
 
 # Application definition
 
