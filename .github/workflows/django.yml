@@ -11,7 +11,7 @@ jobs:
     name: Python ${{ matrix.python-version }}, Django ${{ matrix.django-version }}
     runs-on: ubuntu-latest
     env:
-      DJANGO_ALLOWED_HOSTS: 127.0.0.1
+      DJANGO_ALLOWED_HOSTS: .localhost 127.0.0.1 [::1]
       SECRET_KEY: J66pKu8BWjUDJFSasW
     strategy:
       max-parallel: 4
