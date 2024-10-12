@@ -23,14 +23,14 @@ class I18nSitemap(Sitemap):
     language.
     """
 
-    def __init__(self, language):
+    def __init__(self, language):  # pylint: disable=redefined-outer-name
         self.language = language
         self.original_language = get_language()
 
     def get_obj_location(self, obj):
         return obj.get_absolute_url()
 
-    def location(self, obj):
+    def location(self, obj):  # pylint: disable=arguments-renamed
         activate(self.language)
         location = self.get_obj_location(obj)
         activate(self.original_language)

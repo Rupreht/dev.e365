@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import environ
-import oscar
+import oscar  # pylint: disable=unused-import
 
 env = environ.Env()
 
@@ -82,8 +82,8 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
 gettext_noop = lambda s: s
 LANGUAGES = (
-    ("de", gettext_noop("German")),
-    ("en-gb", gettext_noop("British English")),
+    # ("de", gettext_noop("German")),
+    # ("en-gb", gettext_noop("British English")),
     ("ru", gettext_noop("Russian")),
 )
 
@@ -370,7 +370,7 @@ INTERNAL_IPS = ["127.0.0.1", "::1"]
 # Oscar settings
 # ==============
 # http://docs.oscarcommerce.com/en/latest/ref/settings.html
-from oscar.defaults import *
+from oscar.defaults import *  # pylint: disable=wildcard-import disable=unused-wildcard-import
 
 # Meta
 # ====
@@ -454,6 +454,6 @@ SECURE_BROWSER_XSS_FILTER = True
 
 # Try and import local settings which can be used to override any of the above.
 try:
-    from settings_local import *  # type: ignore
+    from settings_local import *  # type: ignore # pylint: disable=wildcard-import
 except ImportError:
     pass
