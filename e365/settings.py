@@ -18,8 +18,7 @@ import oscar
 env = environ.Env()
 
 # Path helper
-location = lambda x: os.path.join(
-    os.path.dirname(os.path.realpath(__file__)), x)
+location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), x)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,15 +28,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY', default='UajFCuyjDKmWHe29neauXzHi9eZoRXr6RMbT5JyAdPiACBP6Cra2')
+SECRET_KEY = env.str(
+    "SECRET_KEY", default="UajFCuyjDKmWHe29neauXzHi9eZoRXr6RMbT5JyAdPiACBP6Cra2"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DJANGO_DEBUG', default=False)
+DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
 
-EMAIL_SUBJECT_PREFIX = '[Oscar sandbox] '
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_SUBJECT_PREFIX = "[Oscar sandbox] "
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # database settings
 DATABASES = {
@@ -56,7 +57,7 @@ if os.environ.get("SQL_ENGINE") == "django.db.backends.mysql":
     }
 
 CACHES = {
-    'default': env.cache(default='locmemcache://'),
+    "default": env.cache(default="locmemcache://"),
 }
 
 # Internationalization
@@ -74,16 +75,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
 # Includes all languages that have >50% coverage in Transifex
 # Taken from Django's default setting for LANGUAGES
 
 gettext_noop = lambda s: s
 LANGUAGES = (
-    ('de', gettext_noop('German')),
-    ('en-gb', gettext_noop('British English')),
-    ('ru', gettext_noop('Russian')),
+    ("de", gettext_noop("German")),
+    ("en-gb", gettext_noop("British English")),
+    ("ru", gettext_noop("Russian")),
 )
 
 SITE_ID = 1
@@ -91,83 +92,75 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'django.contrib.flatpages',
-
-    'oscar.config.Shop',
-    'oscar.apps.analytics.apps.AnalyticsConfig',
-    'oscar.apps.checkout.apps.CheckoutConfig',
-    'oscar.apps.address.apps.AddressConfig',
-    'oscar.apps.shipping.apps.ShippingConfig',
-    'oscar.apps.catalogue.apps.CatalogueConfig',
-    'oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig',
-    'oscar.apps.communication.apps.CommunicationConfig',
-    'oscar.apps.partner.apps.PartnerConfig',
-    'oscar.apps.basket.apps.BasketConfig',
-    'oscar.apps.payment.apps.PaymentConfig',
-    'oscar.apps.offer.apps.OfferConfig',
-    'oscar.apps.order.apps.OrderConfig',
-    'oscar.apps.customer.apps.CustomerConfig',
-    'oscar.apps.search.apps.SearchConfig',
-    'oscar.apps.voucher.apps.VoucherConfig',
-    'oscar.apps.wishlists.apps.WishlistsConfig',
-    'oscar.apps.dashboard.apps.DashboardConfig',
-    'oscar.apps.dashboard.reports.apps.ReportsDashboardConfig',
-    'oscar.apps.dashboard.users.apps.UsersDashboardConfig',
-    'oscar.apps.dashboard.orders.apps.OrdersDashboardConfig',
-    'oscar.apps.dashboard.catalogue.apps.CatalogueDashboardConfig',
-    'oscar.apps.dashboard.offers.apps.OffersDashboardConfig',
-    'oscar.apps.dashboard.partners.apps.PartnersDashboardConfig',
-    'oscar.apps.dashboard.pages.apps.PagesDashboardConfig',
-    'oscar.apps.dashboard.ranges.apps.RangesDashboardConfig',
-    'oscar.apps.dashboard.reviews.apps.ReviewsDashboardConfig',
-    'oscar.apps.dashboard.vouchers.apps.VouchersDashboardConfig',
-    'oscar.apps.dashboard.communications.apps.CommunicationsDashboardConfig',
-    'oscar.apps.dashboard.shipping.apps.ShippingDashboardConfig',
-
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "django.contrib.flatpages",
+    "oscar.config.Shop",
+    "oscar.apps.analytics.apps.AnalyticsConfig",
+    "oscar.apps.checkout.apps.CheckoutConfig",
+    "oscar.apps.address.apps.AddressConfig",
+    "oscar.apps.shipping.apps.ShippingConfig",
+    "oscar.apps.catalogue.apps.CatalogueConfig",
+    "oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig",
+    "oscar.apps.communication.apps.CommunicationConfig",
+    "oscar.apps.partner.apps.PartnerConfig",
+    "oscar.apps.basket.apps.BasketConfig",
+    "oscar.apps.payment.apps.PaymentConfig",
+    "oscar.apps.offer.apps.OfferConfig",
+    "oscar.apps.order.apps.OrderConfig",
+    "oscar.apps.customer.apps.CustomerConfig",
+    "oscar.apps.search.apps.SearchConfig",
+    "oscar.apps.voucher.apps.VoucherConfig",
+    "oscar.apps.wishlists.apps.WishlistsConfig",
+    "oscar.apps.dashboard.apps.DashboardConfig",
+    "oscar.apps.dashboard.reports.apps.ReportsDashboardConfig",
+    "oscar.apps.dashboard.users.apps.UsersDashboardConfig",
+    "oscar.apps.dashboard.orders.apps.OrdersDashboardConfig",
+    "oscar.apps.dashboard.catalogue.apps.CatalogueDashboardConfig",
+    "oscar.apps.dashboard.offers.apps.OffersDashboardConfig",
+    "oscar.apps.dashboard.partners.apps.PartnersDashboardConfig",
+    "oscar.apps.dashboard.pages.apps.PagesDashboardConfig",
+    "oscar.apps.dashboard.ranges.apps.RangesDashboardConfig",
+    "oscar.apps.dashboard.reviews.apps.ReviewsDashboardConfig",
+    "oscar.apps.dashboard.vouchers.apps.VouchersDashboardConfig",
+    "oscar.apps.dashboard.communications.apps.CommunicationsDashboardConfig",
+    "oscar.apps.dashboard.shipping.apps.ShippingDashboardConfig",
     # 3rd-party apps that Oscar depends on
-    'widget_tweaks',
-    'haystack',
-    'treebeard',
-    'sorl.thumbnail',
-    'easy_thumbnails',
-    'django_tables2',
-
+    "widget_tweaks",
+    "haystack",
+    "treebeard",
+    "sorl.thumbnail",
+    "easy_thumbnails",
+    "django_tables2",
     # Django apps that the sandbox depends on
-    'django.contrib.sitemaps',
-
+    "django.contrib.sitemaps",
     # 3rd-party apps that the sandbox depends on
-    'django_extensions',
-    'debug_toolbar',
+    "django_extensions",
+    "debug_toolbar",
 ]
 
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
     # Allow languages to be selected
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.http.ConditionalGetMiddleware',
-    'django.middleware.common.CommonMiddleware',
-
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.http.ConditionalGetMiddleware",
+    "django.middleware.common.CommonMiddleware",
     # Ensure a valid basket is added to the request instance for every request
-    'oscar.apps.basket.middleware.BasketMiddleware',
+    "oscar.apps.basket.middleware.BasketMiddleware",
 ]
 
 ROOT_URLCONF = "e365.urls"
@@ -176,29 +169,28 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            location('templates'),
+            location("templates"),
         ],
         "OPTIONS": {
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
+            "loaders": [
+                "django.template.loaders.filesystem.Loader",
+                "django.template.loaders.app_directories.Loader",
             ],
             "context_processors": [
-                'django.contrib.auth.context_processors.auth',
-                'django.template.context_processors.request',
-                'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.contrib.messages.context_processors.messages',
-
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.request",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
+                "django.contrib.messages.context_processors.messages",
                 # Oscar specific
-                'oscar.apps.search.context_processors.search_form',
-                'oscar.apps.communication.notifications.context_processors.notifications',
-                'oscar.apps.checkout.context_processors.checkout',
-                'oscar.core.context_processors.metadata',
+                "oscar.apps.search.context_processors.search_form",
+                "oscar.apps.communication.notifications.context_processors.notifications",
+                "oscar.apps.checkout.context_processors.checkout",
+                "oscar.core.context_processors.metadata",
             ],
-            'debug': DEBUG,
+            "debug": DEBUG,
         },
     },
 ]
@@ -208,8 +200,8 @@ WSGI_APPLICATION = "e365.wsgi.application"
 # Add Oscar's custom auth backend so users can sign in using their email
 # address.
 AUTHENTICATION_BACKENDS = (
-    'oscar.apps.customer.auth_backends.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend',
+    "oscar.apps.customer.auth_backends.EmailBackend",
+    "django.contrib.auth.backends.ModelBackend",
 )
 
 # Password validation
@@ -221,9 +213,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-        "OPTIONS": {
-            "min_length": 9
-        }
+        "OPTIONS": {"min_length": 9},
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
@@ -233,7 +223,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/"
 APPEND_SLASH = True
 
 # Static files (CSS, JavaScript, Images)
@@ -241,12 +231,10 @@ APPEND_SLASH = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "../www/static"
-STATICFILES_DIRS = (
-    location('static/'),
-)
+STATICFILES_DIRS = (location("static/"),)
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
 STORAGES = {
@@ -254,7 +242,7 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
@@ -272,79 +260,75 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(message)s',
+    "version": 1,
+    "disable_existing_loggers": True,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(message)s",
         },
-        'simple': {
-            'format': '[%(asctime)s] %(message)s'
+        "simple": {"format": "[%(asctime)s] %(message)s"},
+    },
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console"],
+    },
+    "handlers": {
+        "null": {
+            "level": "DEBUG",
+            "class": "logging.NullHandler",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
         },
     },
-    'root': {
-        'level': 'DEBUG',
-        'handlers': ['console'],
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
+    "loggers": {
+        "oscar": {
+            "level": "DEBUG",
+            "propagate": True,
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+        "oscar.catalogue.import": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
         },
-    },
-    'loggers': {
-        'oscar': {
-            'level': 'DEBUG',
-            'propagate': True,
+        "oscar.alerts": {
+            "handlers": ["null"],
+            "level": "INFO",
+            "propagate": False,
         },
-        'oscar.catalogue.import': {
-            'handlers': ['console'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'oscar.alerts': {
-            'handlers': ['null'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-
         # Django loggers
-        'django': {
-            'handlers': ['null'],
-            'propagate': True,
-            'level': 'INFO',
+        "django": {
+            "handlers": ["null"],
+            "propagate": True,
+            "level": "INFO",
         },
-        'django.request': {
-            'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': True,
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": True,
         },
-        'django.db.backends': {
-            'level': 'WARNING',
-            'propagate': True,
+        "django.db.backends": {
+            "level": "WARNING",
+            "propagate": True,
         },
-        'django.security.DisallowedHost': {
-            'handlers': ['null'],
-            'propagate': False,
+        "django.security.DisallowedHost": {
+            "handlers": ["null"],
+            "propagate": False,
         },
-
         # Third party
-        'raven': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-            'propagate': False,
+        "raven": {
+            "level": "DEBUG",
+            "handlers": ["console"],
+            "propagate": False,
         },
-        'sorl.thumbnail': {
-            'handlers': ['console'],
-            'propagate': True,
-            'level': 'INFO',
+        "sorl.thumbnail": {
+            "handlers": ["console"],
+            "propagate": True,
+            "level": "INFO",
         },
-    }
+    },
 }
 
 # ====================
@@ -352,18 +336,17 @@ LOGGING = {
 # ====================
 
 from django.contrib.messages import constants as messages
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger'
-}
 
-HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+MESSAGE_TAGS = {messages.ERROR: "danger"}
+
+HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
 
 # Woosh settings
 HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': location('whoosh_index'),
-        'INCLUDE_SPELLING': True,
+    "default": {
+        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
+        "PATH": location("whoosh_index"),
+        "INCLUDE_SPELLING": True,
     },
 }
 
@@ -381,21 +364,36 @@ HAYSTACK_CONNECTIONS = {
 # Debug Toolbar
 # =============
 
-INTERNAL_IPS = ['127.0.0.1', '::1']
+INTERNAL_IPS = ["127.0.0.1", "::1"]
 
 # ==============
 # Oscar settings
 # ==============
-
+# http://docs.oscarcommerce.com/en/latest/ref/settings.html
 from oscar.defaults import *
 
 # Meta
 # ====
 
-OSCAR_SHOP_TAGLINE = 'Sandbox'
+OSCAR_SHOP_NAME = "e365"
+OSCAR_SHOP_TAGLINE = "dev"
 
-OSCAR_RECENTLY_VIEWED_PRODUCTS = 20
+OSCAR_DEFAULT_CURRENCY = "RUB"
+
+OSCAR_RECENTLY_VIEWED_PRODUCTS = 25
+# Checkout settings
 OSCAR_ALLOW_ANON_CHECKOUT = True
+OSCAR_REQUIRED_ADDRESS_FIELDS = (
+    "first_name",
+    "last_name",
+    "line1",
+    "line4",
+    "postcode",
+    "country",
+)
+# Review settings
+OSCAR_ALLOW_ANON_REVIEWS = False
+OSCAR_MODERATE_REVIEWS = True
 
 
 # Order processing
@@ -404,34 +402,40 @@ OSCAR_ALLOW_ANON_CHECKOUT = True
 # Sample order/line status settings. This is quite simplistic. It's like you'll
 # want to override the set_status method on the order object to do more
 # sophisticated things.
-OSCAR_INITIAL_ORDER_STATUS = 'Pending'
-OSCAR_INITIAL_LINE_STATUS = 'Pending'
+OSCAR_INITIAL_ORDER_STATUS = "Pending"
+OSCAR_INITIAL_LINE_STATUS = "Pending"
 
 # This dict defines the new order statuses than an order can move to
 OSCAR_ORDER_STATUS_PIPELINE = {
-    'Pending': ('Being processed', 'Cancelled',),
-    'Being processed': ('Complete', 'Cancelled',),
-    'Cancelled': (),
-    'Complete': (),
+    "Pending": (
+        "Being processed",
+        "Cancelled",
+    ),
+    "Being processed": (
+        "Complete",
+        "Cancelled",
+    ),
+    "Cancelled": (),
+    "Complete": (),
 }
 
 # This dict defines the line statuses that will be set when an order's status
 # is changed
 OSCAR_ORDER_STATUS_CASCADE = {
-    'Being processed': 'Being processed',
-    'Cancelled': 'Cancelled',
-    'Complete': 'Shipped',
+    "Being processed": "In progress",
+    "Cancelled": "Cancelled",
+    "Complete": "Shipped",
 }
 
 # Sorl
 # ====
 
 THUMBNAIL_DEBUG = DEBUG
-THUMBNAIL_KEY_PREFIX = 'oscar-sandbox'
+THUMBNAIL_KEY_PREFIX = "oscar-sandbox"
 THUMBNAIL_KVSTORE = env(
-    'THUMBNAIL_KVSTORE',
-    default='sorl.thumbnail.kvstores.cached_db_kvstore.KVStore')
-THUMBNAIL_REDIS_URL = env('THUMBNAIL_REDIS_URL', default=None)
+    "THUMBNAIL_KVSTORE", default="sorl.thumbnail.kvstores.cached_db_kvstore.KVStore"
+)
+THUMBNAIL_REDIS_URL = env("THUMBNAIL_REDIS_URL", default=None)
 
 # easy-thumbnail. See https://github.com/SmileyChris/easy-thumbnails/issues/641#issuecomment-2291098096
 THUMBNAIL_DEFAULT_STORAGE_ALIAS = "default"
@@ -440,16 +444,16 @@ THUMBNAIL_DEFAULT_STORAGE_ALIAS = "default"
 # serialize Models. We should resolve this by extending the
 # django/core/serializers/json.Serializer to have the `dumps` function. Also
 # in tests/config.py
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+SESSION_SERIALIZER = "django.contrib.sessions.serializers.JSONSerializer"
 
 # Security
-SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=False)
-SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS', default=0)
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=False)
+SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", default=0)
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 
 # Try and import local settings which can be used to override any of the above.
 try:
-    from settings_local import *
+    from settings_local import *  # type: ignore
 except ImportError:
     pass

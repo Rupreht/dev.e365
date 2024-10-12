@@ -21,3 +21,9 @@ pip install pycountry
 python manage.py migrate
 python manage.py oscar_populate_countries
 ```
+
+## Update
+
+```sh
+pip install -Ur requirements.txt
+```
