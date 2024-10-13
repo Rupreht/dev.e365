@@ -19,6 +19,7 @@ jobs:
           script_stop: true
           script: |
             cd ${{ secrets.WORKDIR }}
+            find . -type d -name __pycache__ -exec rm -rf {} \;
             git pull origin
             pip install -U pip
             pip install -r requirements.txt
