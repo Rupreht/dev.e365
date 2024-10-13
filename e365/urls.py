@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps import views
 from django.urls import include, path
+from django.views.generic import TemplateView
 from oscar.views import handler403, handler404, handler500
 
 from shop.sitemaps import base_sitemaps
@@ -26,6 +27,7 @@ urlpatterns = [
         {"sitemaps": base_sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
     ),
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
 ]
 
 # Prefix Oscar URLs with language codes
