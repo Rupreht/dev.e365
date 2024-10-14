@@ -11,17 +11,25 @@ jobs:
     steps:
       - name: deploy on dev stand
         uses: appleboy/ssh-action@v1.1.0
+        env:
+          SSH_KEY_BASE64: ${{ secrets.SSH_KEY_BASE64 }}
         with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script_stop: true
+          envs: SSH_KEY_BASE64
           script: |
             cd ${{ secrets.WORKDIR }}
-            find . -type d -name __pycache__ -exec rm -rf {} \;
+            eval "$(ssh-agent -s)"
+            echo $SSH_KEY_BASE64 | base64 --decode | ssh-add -
+            find . -type d -name __pycache__ -exec rm -rf {} + || exit 0
             git pull origin
+            ssh-add -D
+            source ../.envrc
             pip install -U pip
             pip install -r requirements.txt
             python manage.py collectstatic --noinput
             python manage.py migrate
+            (cd .. && touch reload)
