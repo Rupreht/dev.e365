@@ -20,8 +20,11 @@ jobs:
           script: |
             cd ${{ secrets.WORKDIR }}
             env
+            eval "$(ssh-agent -s)"
+            ssh-add - <<< "${{ secrets.SSH_KEY }}"
             find . -type d -name __pycache__ -delete
             git pull origin
+            ssh-add -D
             pip install -U pip
             pip install -r requirements.txt
             python manage.py collectstatic --noinput
