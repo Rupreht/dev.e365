@@ -18,10 +18,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script_stop: true
           script: |
+            set -x
             cd ${{ secrets.WORKDIR }}
-            env
             eval "$(ssh-agent -s)"
-            echo "${{ secrets.SSH_KEY }}" | ssh-add -
+            env
+            echo "${{ secrets.SSH_KEY }}"
             find . -type d -name __pycache__ -delete
             git pull origin
             ssh-add -D
