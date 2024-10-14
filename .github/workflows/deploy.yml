@@ -27,6 +27,7 @@ jobs:
             find . -type d -name __pycache__ -delete
             git pull origin
             ssh-add -D
+            source ../.envrc
             pip install -U pip
             pip install -r requirements.txt
             python manage.py collectstatic --noinput
