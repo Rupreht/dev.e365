@@ -11,18 +11,21 @@ jobs:
     steps:
       - name: deploy on dev stand
         uses: appleboy/ssh-action@v1.1.0
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
         with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script_stop: true
+          envs: SSH_KEY
           script: |
             set -x
             cd ${{ secrets.WORKDIR }}
             eval "$(ssh-agent -s)"
             env
-            echo "${{ secrets.SSH_KEY }}" | tr -d "'" | ssh-add -
+            echo $SSH_KEY | tr -d "'" | ssh-add -
             find . -type d -name __pycache__ -delete
             git pull origin
             ssh-add -D
