@@ -2,7 +2,7 @@ name: Django CD
 
 on:
   push:
-    branches: [ "main" ]
+    # branches: [ "main" ]
 
 jobs:
   build:
@@ -19,7 +19,8 @@ jobs:
           script_stop: true
           script: |
             cd ${{ secrets.WORKDIR }}
-            find . -type d -name __pycache__ -exec rm -rf {} \;
+            env
+            find . -type d -name __pycache__ -delete
             git pull origin
             pip install -U pip
             pip install -r requirements.txt
