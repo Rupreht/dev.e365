@@ -22,7 +22,7 @@ jobs:
             cd ${{ secrets.WORKDIR }}
             eval "$(ssh-agent -s)"
             env
-            echo "${{ secrets.SSH_KEY }}"
+            echo "${{ secrets.SSH_KEY }}" | tr -d "'" | ssh-add -
             find . -type d -name __pycache__ -delete
             git pull origin
             ssh-add -D
