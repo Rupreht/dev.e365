@@ -21,11 +21,9 @@ jobs:
           script_stop: true
           envs: SSH_KEY_BASE64
           script: |
-            set -x
             cd ${{ secrets.WORKDIR }}
             eval "$(ssh-agent -s)"
             echo $SSH_KEY_BASE64 | base64 --decode | ssh-add -
-            env
             find . -type d -name __pycache__ -delete
             git pull origin
             ssh-add -D
