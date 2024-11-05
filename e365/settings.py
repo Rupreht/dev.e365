@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
+from oscar.defaults import *  # pylint: disable=wildcard-import disable=unused-wildcard-import
 import os
 import environ
 import oscar  # pylint: disable=unused-import
+
 
 env = environ.Env()
 
@@ -79,7 +82,6 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
 # Includes all languages that have >50% coverage in Transifex
 # Taken from Django's default setting for LANGUAGES
-
 gettext_noop = lambda s: s
 LANGUAGES = (
     # ("de", gettext_noop("German")),
@@ -105,7 +107,8 @@ INSTALLED_APPS = [
     "oscar.apps.checkout.apps.CheckoutConfig",
     "oscar.apps.address.apps.AddressConfig",
     "oscar.apps.shipping.apps.ShippingConfig",
-    "oscar.apps.catalogue.apps.CatalogueConfig",
+    # "oscar.apps.catalogue.apps.CatalogueConfig",
+    "e365.catalogue.apps.CatalogueConfig",
     "oscar.apps.catalogue.reviews.apps.CatalogueReviewsConfig",
     "oscar.apps.communication.apps.CommunicationConfig",
     "oscar.apps.partner.apps.PartnerConfig",
@@ -135,7 +138,7 @@ INSTALLED_APPS = [
     "haystack",
     "treebeard",
     "sorl.thumbnail",
-    "easy_thumbnails",
+    # "easy_thumbnails",
     "django_tables2",
     # Django apps that the sandbox depends on
     "django.contrib.sitemaps",
@@ -172,10 +175,13 @@ TEMPLATES = [
             location("templates"),
         ],
         "OPTIONS": {
-            "loaders": [
-                "django.template.loaders.filesystem.Loader",
-                "django.template.loaders.app_directories.Loader",
-            ],
+            "loaders": [(
+                "django.template.loaders.cached.Loader",
+                [
+                    "django.template.loaders.filesystem.Loader",
+                    "django.template.loaders.app_directories.Loader",
+                ],
+            )],
             "context_processors": [
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.request",
@@ -184,7 +190,6 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.template.context_processors.static",
                 "django.contrib.messages.context_processors.messages",
-                # Oscar specific
                 "oscar.apps.search.context_processors.search_form",
                 "oscar.apps.communication.notifications.context_processors.notifications",
                 "oscar.apps.checkout.context_processors.checkout",
@@ -334,9 +339,6 @@ LOGGING = {
 # ====================
 # Messages contrib app
 # ====================
-
-from django.contrib.messages import constants as messages
-
 MESSAGE_TAGS = {messages.ERROR: "danger"}
 
 HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
@@ -370,7 +372,6 @@ INTERNAL_IPS = ["127.0.0.1", "::1"]
 # Oscar settings
 # ==============
 # http://docs.oscarcommerce.com/en/latest/ref/settings.html
-from oscar.defaults import *  # pylint: disable=wildcard-import disable=unused-wildcard-import
 
 # Meta
 # ====
@@ -391,6 +392,7 @@ OSCAR_REQUIRED_ADDRESS_FIELDS = (
     "postcode",
     "country",
 )
+OSCAR_SLUG_FUNCTION = 'e365.utils.base64_encode_slugify'
 # Review settings
 OSCAR_ALLOW_ANON_REVIEWS = False
 OSCAR_MODERATE_REVIEWS = True
@@ -431,7 +433,7 @@ OSCAR_ORDER_STATUS_CASCADE = {
 # ====
 
 THUMBNAIL_DEBUG = DEBUG
-THUMBNAIL_KEY_PREFIX = "oscar-sandbox"
+THUMBNAIL_KEY_PREFIX = "e365"
 THUMBNAIL_KVSTORE = env(
     "THUMBNAIL_KVSTORE", default="sorl.thumbnail.kvstores.cached_db_kvstore.KVStore"
 )
