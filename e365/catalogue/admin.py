@@ -12,4 +12,5 @@ class ProductAdmin(admin.ModelAdmin):
         "video_url",
     )
 
+
 from oscar.apps.catalogue.admin import *  # pylint: disable=wildcard-import,unused-wildcard-import
