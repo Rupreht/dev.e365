@@ -175,13 +175,15 @@ TEMPLATES = [
             location("templates"),
         ],
         "OPTIONS": {
-            "loaders": [(
-                "django.template.loaders.cached.Loader",
-                [
-                    "django.template.loaders.filesystem.Loader",
-                    "django.template.loaders.app_directories.Loader",
-                ],
-            )],
+            "loaders": [
+                (
+                    "django.template.loaders.cached.Loader",
+                    [
+                        "django.template.loaders.filesystem.Loader",
+                        "django.template.loaders.app_directories.Loader",
+                    ],
+                )
+            ],
             "context_processors": [
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.request",
@@ -392,7 +394,7 @@ OSCAR_REQUIRED_ADDRESS_FIELDS = (
     "postcode",
     "country",
 )
-OSCAR_SLUG_FUNCTION = 'e365.utils.base64_encode_slugify'
+OSCAR_SLUG_FUNCTION = "e365.utils.base64_encode_slugify"
 # Review settings
 OSCAR_ALLOW_ANON_REVIEWS = False
 OSCAR_MODERATE_REVIEWS = True
