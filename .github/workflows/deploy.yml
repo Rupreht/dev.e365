@@ -5,8 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: deploy
     runs-on: ubuntu-latest
     steps:
       - name: deploy on dev stand
@@ -32,4 +32,4 @@ jobs:
             pip install -r requirements.txt
             python manage.py collectstatic --noinput
             python manage.py migrate
-            (cd .. && touch reload)
+            (cd ${{ secrets.WORKDIR }}/../ && touch reload)

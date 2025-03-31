@@ -5,17 +5,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  test-ci:
     name: Python ${{ matrix.python-version }}, Django ${{ matrix.django-version }}
     runs-on: ubuntu-latest
     env:
-      DJANGO_ALLOWED_HOSTS: .localhost 127.0.0.1 [::1]
-      SECRET_KEY: J66pKu8BWjUDJFSasW
+      DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     strategy:
       max-parallel: 4
       matrix:
         python-version: ['3.11', '3.12']
-        django-version: ['4.2', '5.0', '5.1']
+        django-version: ['5.0', '5.1']
 
     steps:
     - uses: actions/checkout@v4
@@ -32,6 +32,7 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+
   lint_python:
     runs-on: ubuntu-latest
     steps:
@@ -49,17 +50,3 @@ jobs:
       run: |
         black --check --exclude "migrations/*" e365/ shop/
         pylint e365/ shop/
-  # lint_js:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #   - name: Set up NodeJS
-  #     uses: actions/setup-node@v4
-  #     with:
-  #       node-version: '20'
-  #   - name: Install dependencies
-  #     run: |
-  #       npm ci
-  #   - name: Run linters
-  #     run: |
-  #       npm run eslint
