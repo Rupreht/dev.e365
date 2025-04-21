@@ -1,3 +1,7 @@
+[![CodeQL](https://github.com/Rupreht/dev.e365/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Rupreht/dev.e365/actions/workflows/codeql-analysis.yml)
+[![Django CI](https://github.com/Rupreht/dev.e365/actions/workflows/django.yml/badge.svg)](https://github.com/Rupreht/dev.e365/actions/workflows/django.yml)
+[![Django CD](https://github.com/Rupreht/dev.e365/actions/workflows/deploy.yml/badge.svg)](https://github.com/Rupreht/dev.e365/actions/workflows/deploy.yml)
+
 # e365
 
 ## Переменные окружения
