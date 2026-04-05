@@ -144,12 +144,9 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     # 3rd-party apps that the sandbox depends on
     "django_extensions",
-    "debug_toolbar",
 ]
 
-
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -165,6 +162,10 @@ MIDDLEWARE = [
     # Ensure a valid basket is added to the request instance for every request
     "oscar.apps.basket.middleware.BasketMiddleware",
 ]
+
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 ROOT_URLCONF = "e365.urls"
 

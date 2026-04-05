@@ -1,0 +1,9 @@
+# development
+pytest==9.0.2
+django-debug-toolbar>=2.2,<6.3
+psycopg2-binary>=2.8,<2.10
+
+# linters
+black>=24.4.2,<26
+pylint>=3.2.4
+pylint-django>=2.5.5
