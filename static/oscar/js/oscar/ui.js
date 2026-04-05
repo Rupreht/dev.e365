@@ -22,6 +22,35 @@ var oscar = (function(o, $) {
         }
     };
 
+    // Utility helpers.
+    o.utils = o.utils || {};
+    /**
+     * Basic URL sanitization to avoid navigating to dangerous schemes such as
+     * "javascript:" or "data:". Returns an empty string if the URL is not allowed.
+     */
+    o.utils.sanitiseUrl = function(url) {
+        if (!url) {
+            return '';
+        }
+        var trimmed = $.trim(url);
+        // Disallow dangerous schemes
+        var lower = trimmed.toLowerCase();
+        if (lower.indexOf('javascript:') === 0 ||
+            lower.indexOf('data:') === 0 ||
+            lower.indexOf('vbscript:') === 0) {
+            return '';
+        }
+        // Optionally, only allow relative URLs or http/https
+        if (lower.indexOf('http://') === 0 || lower.indexOf('https://') === 0) {
+            return trimmed;
+        }
+        if (trimmed.charAt(0) === '/' || trimmed.charAt(0) === '?' || trimmed.charAt(0) === '#') {
+            return trimmed;
+        }
+        // Anything else is rejected
+        return '';
+    };
+
     o.search = {
         init: function() {
             o.search.initSortWidget();
@@ -36,7 +65,13 @@ var oscar = (function(o, $) {
         initFacetWidgets: function() {
             // Bind events to facet checkboxes
             $('.facet_checkbox').on('change', function() {
-                window.location.href = $(this).nextAll('.facet_url').val();
+                var rawUrl = $(this).nextAll('.facet_url').val();
+                var safeUrl = (o.utils && typeof o.utils.sanitiseUrl === 'function')
+                    ? o.utils.sanitiseUrl(rawUrl)
+                    : rawUrl;
+                if (safeUrl) {
+                    window.location.href = safeUrl;
+                }
             });
         }
     };
