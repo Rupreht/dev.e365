@@ -26,12 +26,12 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest
-        pip install -r requirements.txt
         pip install "django~=${{ matrix.django-version }}.0"
+        pip install -r requirements.txt -r requirements-dev.txt
     - name: Run Tests
-      run: |
-        python manage.py test
+      run: python manage.py test
+    - name: Run migrate
+      run: python manage.py migrate
 
   lint_python:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install black>=24.4.2 pylint>=3.2.4 pylint-django>=2.5.5
+        pip install 'black>=24.4.2,<26' 'pylint>=3.2.4' 'pylint-django>=2.5.5'
     - name: Run linters
       run: |
         black --check --exclude "migrations/*" e365/ shop/

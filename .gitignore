@@ -163,3 +163,5 @@ cython_debug/
 
 */whoosh_index/*
 db.sqlite*
+.python-version
+.vscode/
