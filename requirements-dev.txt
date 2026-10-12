@@ -1,9 +1,9 @@
 # development
-pytest==9.1.0
-django-debug-toolbar>=6.3.0,<6.4
-psycopg2-binary>=2.9.12,<2.10
+pytest==9.1.1
+django-debug-toolbar>=8.0.0,<8.1
+psycopg2-binary>=2.9.13,<2.10
 
 # linters
-black>=26.5.1,<27
-pylint>=4.0.6
-pylint-django>=2.7.0
+black>=26.10.0,<27
+pylint>=4.1.2
+pylint-django>=2.8.0
